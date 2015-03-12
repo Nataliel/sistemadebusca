@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from dj_database_url import parse as db
 from datetime import timedelta
 from decouple import config
 
@@ -64,14 +65,15 @@ WSGI_APPLICATION = 'ruedaerueda.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.%s' % config('DB_ENGINE'),
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT'),
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.%s' % config('DB_ENGINE'),
+    #     'NAME': config('DB_NAME'),
+    #     'USER': config('DB_USER'),
+    #     'PASSWORD': config('DB_PASSWORD', default=''),
+    #     'HOST': config('DB_HOST', default='localhost'),
+    #     'PORT': config('DB_PORT'),
+    # }
+    'default': db(os.environ.get('DATABASE_URL'), config('DATABASE_URL'))
 }
 
 # Internationalization
