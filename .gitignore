@@ -1,0 +1,12 @@
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.pyc
+*.egg
+.idea
+.ropeproject
+media/uploads
+ruedaerueda/settings.ini
+static/*
+celerybeat-schedule.db

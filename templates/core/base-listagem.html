@@ -1,0 +1,82 @@
+{% extends "components/base.html" %}
+{% load selectable_tags %}
+
+{% block content %}
+    <section class="block">
+        <div class="row">
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="titulo-section">
+                    <h2 class="titulo-block">Listagem Base</h2>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div data-alert class="alert-box radius {% if message.tags == 'error' %}alert{% else %}{{ message.tags }}{% endif %} alertas">{{ message }}
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="large-6 medium-6 small-12 columns">
+                        <form action="." class="well not-printable" method="GET">
+                            <div class="row collapse">
+                                <label>Pesquisar texto</label>
+                                <div class="small-10 columns">
+                                    {{ search.q }}
+                                </div>
+                                <div class="small-2 columns">
+                                    <button type="submit" class="button postfix"><i class="fi-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="large-4 medium-4 small-12 columns">
+                        <a href="{% url "criar" %}" class="button success right">Adicionar</a>
+                        <a href="{% url "logs" %}" class="button secondary right">Logs</a>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="large-12 medium-12 small-12 columns">
+                        <table class="large-12 medium-12 small-12">
+                            <thead>
+                                <tr>
+                                    <th width="50">Id</th>
+                                    <th>Nome</th>
+                                    <th width="350">Numero</th>
+                                    <th width="150">Data</th>
+                                    <th width="150">Editar</th>
+                                    <th width="150">Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for object in object_list %}
+                                <tr>
+                                    <td>{{ object.id }}</td>
+                                    <td>{{ object.text }}</td>
+                                    <td>{{ object.number }}</td>
+                                    <td>{{ object.date_created|date:"d/m/y" }}</td>
+                                    <td>
+                                        <a href="{% url 'editar' object.id %}" class="button small"><i class="fi-page-edit"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'excluir' object.id %}" class="button alert small"><i class="fi-page-delete"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% include "components/pagination.html" %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra %}
+{% include_jquery_libs %}
+{% include_ui_theme %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.dj.selectable.js"></script>
+{% endblock %}

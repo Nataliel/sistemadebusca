@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="pt_br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+
+    <meta name="author" content="" />
+    <meta name="copyright" content="" />
+
+    <title>Interna</title>
+
+    <!-- block css -->
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/icons.css" />
+
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/foundation.min.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/app.css" />
+
+
+    <script src="{{ MEDIA_URL }}js/vendor/modernizr.js"></script>
+</head>
+
+<body class="antialiased">
+
+    <!-- base -->
+    <div class="body">
+        <!-- base -->
+
+        <main class="main">
+        {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="copyright">
+                <div class="row">
+                    <div class="large-6 medium-6 small-12 columns">
+                        <p>Copyright © 2015. Todos os direitos reservados</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end base -->
+
+    </div>
+    <!-- end base -->
+
+    <!-- block scripts -->
+    <script src="{{ MEDIA_URL }}js/vendor/jquery.js"></script>
+    <script src="{{ MEDIA_URL }}js/foundation.min.js"></script>
+
+    <script>
+    $(document).foundation();
+    </script>
+    {% block extra %}
+    {% endblock %}
+    <!-- end block scripts -->
+</body>
+
+</html>
